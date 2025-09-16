@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: service-product
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      config:
+        import-check:
+          enabled: false
+
+server:
+  port: 9000

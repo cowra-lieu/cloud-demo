@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: service-order
+  profiles:
+    active: prod
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      config:
+        namespace: ${spring.profiles.active:public}
+        group: order
+
+server:
+  port: 8000
+
+logging:
+  level:
+    root: info
+    me.cowra.demo: debug
+
+---
+spring:
+  config:
+    import:
+      - nacos:common.yml
+      - nacos:database.yml
+    activate:
+      on-profile: dev
+---
+spring:
+  config:
+    import:
+      - nacos:common.yml
+      - nacos:database.yml
+    activate:
+      on-profile: test
+---
+spring:
+  config:
+    import:
+      - nacos:common.yml
+      - nacos:database.yml
+    activate:
+      on-profile: prod
