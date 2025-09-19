@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "order")  //! 配置的批量绑定；集成Nacos时，无需@RefreshScope可自动刷新
+@ConfigurationProperties(prefix = "order")  //! 配置的批量绑定；集成 nacos 时，无需 @RefreshScope 可自动刷新
 @Data
 public class OrderProperties {
 

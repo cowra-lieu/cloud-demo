@@ -2,12 +2,14 @@ spring:
   application:
     name: service-order
   profiles:
-    active: prod
+    active: dev
+    # 包含 application-feign.yml
+    include: feign
   cloud:
     nacos:
       server-addr: localhost:8848
       config:
-        namespace: ${spring.profiles.active:public}
+        namespace: 54725212-72d0-4b26-afe5-00ba1ac4712c
         group: order
 
 server:
@@ -22,7 +24,7 @@ logging:
 spring:
   config:
     import:
-      - nacos:common.yml
+      - nacos:commons.yml
       - nacos:database.yml
     activate:
       on-profile: dev
@@ -30,7 +32,7 @@ spring:
 spring:
   config:
     import:
-      - nacos:common.yml
+      - nacos:commons.yml
       - nacos:database.yml
     activate:
       on-profile: test
@@ -38,7 +40,7 @@ spring:
 spring:
   config:
     import:
-      - nacos:common.yml
+      - nacos:commons.yml
       - nacos:database.yml
     activate:
       on-profile: prod

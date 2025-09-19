@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    openfeign:
+      client:
+        config:
+          # 默认配置用于所有 feign client
+          default:
+            logger-level: basic
+            connect-timeout: 1_000
+            read-timeout: 2_000
+          # 覆盖默认配置的某个具体 feign client 的配置
+#          service-product:
+#            logger-level: full
+#            connect-timeout: 3_000 # 从默认的10秒改成3秒
+#            read-timeout: 5_000  # 从默认的60秒改成5秒
+
+# 整合 sentinel 后, feign 的 fallback 才能起作用
+feign:
+  sentinel:
+    enabled: true

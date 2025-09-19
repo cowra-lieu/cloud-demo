@@ -2,8 +2,7 @@
 POST http://localhost:8000/order
 Content-Type: application/x-www-form-urlencoded
 
-userId = 234 &
-productId = 101
+userId=234&productId=105
 
 ### get config of order
 GET http://localhost:8000/config
