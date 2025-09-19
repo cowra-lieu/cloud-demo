@@ -1,5 +1,7 @@
 package me.cowra.demo.cloud.order.service.impl;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.cowra.demo.cloud.order.feign.ProductFeignClient;
@@ -27,7 +29,9 @@ public class OrderServiceImpl implements OrderService {
 
     private final ProductFeignClient productFeignClient;
 
-
+    //! controller 中提供 restful api 的方法被 sentinel 自动识别为 资源
+    //! 用注解把一个方法声明为 sentinel 资源
+    @SentinelResource(value = "createOrder", fallback = "createOrderFallback")
     @Override
     public Order createOrder(Long productId, Long userId) {
 //        Product product = getProductFromRemote(productId);
@@ -44,6 +48,17 @@ public class OrderServiceImpl implements OrderService {
         order.setAddress("somewhere");
         order.setProductList(List.of(product));
 
+        return order;
+    }
+
+    public Order createOrderFallback(Long productId, Long userId, BlockException e) {
+        log.warn(e.getMessage(), e);
+        Order order = new Order();
+        order.setId(0L);
+        order.setTotalAmount(new BigDecimal("0"));
+        order.setUserId(userId);
+        order.setNickName("<未知>");
+        order.setAddress("<未知>");
         return order;
     }
 

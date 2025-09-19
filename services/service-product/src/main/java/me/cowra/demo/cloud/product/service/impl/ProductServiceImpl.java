@@ -20,11 +20,11 @@ public class ProductServiceImpl implements ProductService {
         //! FeignClient 默认两个超时:
         //! 1. 连接超时: 10s
         //! 2. 读取超时: 60s
-        try {
-            TimeUnit.SECONDS.sleep(10L);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            TimeUnit.SECONDS.sleep(10L);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
         
         return product;
     }

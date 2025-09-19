@@ -3,8 +3,8 @@ spring:
     name: service-order
   profiles:
     active: dev
-    # 包含 application-feign.yml
-    include: feign
+    # 包含 application-feign.yml, application-sentinel.yml
+    include: feign,sentinel
   cloud:
     nacos:
       server-addr: localhost:8848

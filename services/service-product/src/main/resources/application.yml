@@ -1,6 +1,9 @@
 spring:
   application:
     name: service-product
+  profiles:
+    # 包含 application-sentinel.yml
+    include: sentinel
   cloud:
     nacos:
       server-addr: localhost:8848
